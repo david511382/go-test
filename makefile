@@ -7,7 +7,6 @@ release:
 	bash ./scripts/release_note.sh
 
 VERSION := $(shell bash ./scripts/merge_version.sh)
-VERSION := 1.0.0
 tag:
 	git tag v$(VERSION)
 
