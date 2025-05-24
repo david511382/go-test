@@ -14,4 +14,4 @@ tag:
 
 deploy:
 	git push origin v$(VERSION)
-	GOPROXY=proxy.golang.org go list -m github.com/david511382/go-test/test@v$(VERSION)
+	GOPROXY=proxy.golang.org go list -m github.com/david511382/go-test@v$(VERSION)
