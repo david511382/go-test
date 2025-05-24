@@ -1,4 +1,4 @@
-module github.com/david511382/go-test
+module github.com/david511382/go-test/test
 
 go 1.23.0
 
