@@ -1,6 +1,6 @@
-# go-package-template
+# go-test
 
-Template for golang package
+Test tool for golang
 
 <p align="left">
 	* <a href="#Features">Features</a><br>
@@ -11,18 +11,21 @@ Template for golang package
 
 # Features
 
-* Template
+* Implement for package gomock Matcher
+* Test case architecture
 
 # Installation
 
 ## Install with the `go` tool
 
 ```bash
-go get github.com/david511382/go-package-template
+go get github.com/david511382/go-test/test
 ```
 
 # Examples
 
-## Template
+## Implement for package gomock Matcher
+
+## Test case architecture
 
 # Dependencies

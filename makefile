@@ -6,7 +6,7 @@
 release:
 	bash ./scripts/release_note.sh
 
-MODULE := go-package-tempalate
+MODULE := go-test
 VERSION := $(shell bash ./scripts/merge_version.sh)
 
 tag:

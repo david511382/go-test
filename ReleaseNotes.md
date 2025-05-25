@@ -1,1 +1,1 @@
-# go-package-template
+# go-test
