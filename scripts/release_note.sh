@@ -1,9 +1,11 @@
 #!/bin/sh
 
+REPO_NAME=go-test
+REPO_URL="https://github.com/david511382/$REPO_NAME/commit"
 DEST=ReleaseNotes.md
 TEMP=temp_release_notes.md
-FORMAT="- %s ([%h](%H))"
-VERSION=$(git branch --show-current | sed 's@qa/@@')
+FORMAT="- %s ([%h]($REPO_URL/%H))"
+VERSION=$(git branch --show-current | sed 's@version/@@')
 SINCE="$(git log -1 --pretty=format:%h -- $DEST)"
 
 echo "VERSION: $VERSION"
@@ -11,7 +13,7 @@ echo "SINCE: $SINCE"
 
 mv $DEST $TEMP
 
-echo -e "# Ke\n
+echo -e "# $REPO_NAME\n
 ## $VERSION\n
 ### Issues\n" >> $DEST
 git log --pretty=format:"$FORMAT" --grep="fix" $SINCE..HEAD >> $DEST
@@ -25,3 +27,5 @@ do
     echo "$LINE" >> $DEST
 done
 rm $TEMP
+
+git log --pretty=format:"$FORMAT" --grep="Revert" -i $SINCE..HEAD
