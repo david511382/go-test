@@ -1,6 +1,9 @@
 package test
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 type TestCase[Args any, Migrations any, Wants any] struct {
 	Name       string
@@ -47,6 +50,36 @@ func (tss TestCases[Args, Migrations, Wants]) MakeTestCases() []TestCase[Args, M
 			tcName = strconv.Itoa(i)
 		}
 		tcs[i].Name = tcName
+	}
+	return tcs
+}
+
+type TestCasesWithName[Args any, Migrations any, Wants any] struct {
+	name  string
+	cases []ITestSuit[Args, Migrations, Wants]
+}
+
+func NewTestCasesWithName[Args any, Migrations any, Wants any](name string, cases ...ITestSuit[Args, Migrations, Wants]) *TestCasesWithName[Args, Migrations, Wants] {
+	return &TestCasesWithName[Args, Migrations, Wants]{
+		name,
+		cases,
+	}
+}
+
+func (tcwn TestCasesWithName[Args, Migrations, Wants]) MakeTestCases() []TestCase[Args, Migrations, Wants] {
+	tss := tcwn.cases
+	tcs := make([]TestCase[Args, Migrations, Wants], 0, len(tss))
+	for _, ts := range tss {
+		tcs = append(tcs, ts.MakeTestCases()...)
+	}
+
+	tcNamePrifix := tcwn.name
+	for i, tc := range tcs {
+		tcName := tc.Name
+		if tcName == "" {
+			tcName = strconv.Itoa(i)
+		}
+		tcs[i].Name = fmt.Sprintf("%s-%s", tcNamePrifix, tcName)
 	}
 	return tcs
 }
