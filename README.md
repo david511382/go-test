@@ -19,7 +19,7 @@ Test tool for golang
 ## Install with the `go` tool
 
 ```bash
-go get github.com/david511382/go-test
+go get github.com/david511382/go-test/test
 ```
 
 # Examples
